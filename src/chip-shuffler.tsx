@@ -64,7 +64,7 @@ const ChipStackComponent = ({ numberOfEachColorChip, colorOne, colorTwo }: ChipS
 }
 
 const ChipShufflerApp = () => {
-    const [numberOfEachColorChip, setNumberOfEachColorChip] = useState<number>(7);
+    const [numberOfEachColorChip, setNumberOfEachColorChip] = useState<number>(9);
     const [colorOne, setColorOne] = useState<string>('#ffffff');
     const [colorTwo, setColorTwo] = useState<string>('#6600cc');
     const [started, setStarted] = useState<boolean>(false);

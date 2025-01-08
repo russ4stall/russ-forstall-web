@@ -20,47 +20,32 @@
         }
         
         .bank { 
+            width: 502px; 
+            margin: -2px auto 0;
             height: 200px;
-            border: 1px solid red;
+            border: 2px solid salmon;
             position: relative;
+        }
+
+        .bank .add-form {
+            margin: 2px;
         }
         
         .bank .item {
             position: initial;
         }
+
+        #graph-container {
+            overflow: hidden;
+        }
         
         .quadrants { 
-            display: inline-block;
             width: 504px;
+            height: 504px;
             position: relative;
             border: 1px solid salmon;
             background: transparent;
-        }
-        
-        #y-axis {
-            display: inline-block;
-            height: 604px;
-            width: 100px;
-        }
-        
-        #y-axis .axis-label {
-            display: flex;
-            float: left;
-            justify-content: center;
-            align-content: center;
-            margin-top: 290px;
-            -moz-transform: rotate(270deg);  /* FF3.5+ */
-            -o-transform: rotate(270deg);  /* Opera 10.5 */
-            -webkit-transform: rotate(-90deg);
-        }
-    
-        
-        #x-axis {
-            margin-left: 180px;
-        }
-        
-        #x-axis .axis-label {
-            text-align: center;
+            margin: 1rem auto 0;
         }
 
         .quadrants .item {
@@ -99,28 +84,73 @@
         }
         
         #trash-can {
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
             position: absolute;
             right: 0;
             bottom: 0;
-            background-color: gray;
+            background-color: lightgray;
         }
         
         #trash-can h6 { 
             text-align: center;
         }
+
+        .axis-label-arrow {
+            font-size: 2rem;
+        }
+
+        #x-label { 
+            position: absolute; 
+            top: -42px; 
+            width: 100%;
+            text-align: center;
+        }
+        #y-label { 
+            position: absolute; 
+            right: 182px;
+            top: 0px;
+            bottom: 0;
+            margin: auto;
+            -moz-transform: rotate(270deg);  /* FF3.5+ */
+            -o-transform: rotate(270deg);  /* Opera 10.5 */
+            -webkit-transform: rotate(-90deg);
+        }
+
+        #urgent-label { 
+            position: absolute; 
+            top: -1.5rem; 
+            left: 100px; 
+        }
+        #not-urgent-label { 
+            position: absolute; 
+            top: -1.5rem; 
+            left: 330px; 
+        }
+        #important-label { 
+            position: absolute; 
+            left: -60px;
+            top: 120px;
+            -moz-transform: rotate(270deg);  /* FF3.5+ */
+            -o-transform: rotate(270deg);  /* Opera 10.5 */
+            -webkit-transform: rotate(-90deg);
+        }
+        #not-important-label { 
+            position: absolute; 
+            left: -80px; 
+            top: 360px;
+            -moz-transform: rotate(270deg);  /* FF3.5+ */
+            -o-transform: rotate(270deg);  /* Opera 10.5 */
+            -webkit-transform: rotate(-90deg);
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
-        <nav>
-            <a href="/" title="HOME">&#x210B;</a> |
-            <a href="code" title="CODE">&lt;/&gt;</a> |
-            <a href="music" title="MUSIC">&#9835;</a> 
-        </nav>
-        <h1>Enter the Eisenhower Matrix <span class="title-date">1/7/2025</span></h1>
-        <p><a href="app">Check out the newest version of the app</a></p>
+        <nav><a href="/" title="HOME">&#x210B;</a></nav>
+        <h1>Enter the Eisenhower Matrix <span class="title-date">12/25/2024</span></h1>
+        <p><a href="#">Check out the latest version</a> <small>(COMING SOON)</small></p>
         <p>
             When I first decided to grow my small freelance software business into a bigger software shop, 
             one of the better decisions I made was getting a business leadership coach. Her name was Ann 
@@ -129,57 +159,74 @@
         </p>
         <p>
             One of our earlier sessions was about task delegation and she used a modified version of the
-            <a href="https://en.wikipedia.org/wiki/Time_management#The_Eisenhower_Method">Eisenhower Matrix</a> 
-            as a tool to help determine what tasks to do myself and what tasks to delegate. I found this tool
-            useful for many purposes and at some point decided to build a web version.
+            <a target="_blank" href="https://en.wikipedia.org/wiki/Time_management#The_Eisenhower_Method">Eisenhower Matrix</a> 
+            as a tool to help determine what tasks to do myself and what tasks to delegate. The Eisenhower Matrix uses the 
+            relationship between urgency and importance to determine task priorizitation. Replace "urgency" and "importance" 
+            with "talent/skill" and "passion/joy", and you have a dangerously potent introspection inducing brew for the conscious human mind.
         </p>
-
-        
-
+            
+        <p>
+            The modification was a simple but powerful one, because it made me truly think about how <strong>I was</strong> spending my time vs 
+            how <strong>I wanted</strong> to be spending my time. Of course we can't always be doing whatever we want and these things tend to 
+            change with the seasons of life. But, we only have a limited amount of life on this planet  
+            so shouldn't we be spending it doing the things that bring us joy? Aaanywaaaay... <span style="font-size: 2rem;">&#9760;</span>
+        </p>
+        <p>
+            I found myself returning to this tool again and again 
+            so I decided to build a web version. In 2022 I built a proof of concept. Here is a modified 
+            version of the original build. <span style="color: red;">(WARNING: not mobile friendly)</span>
+        </p>
+        <br>
         <div id="graph-container">
-            <!-- <div id="y-axis">
-                <h3 id="y-axis-label" class="axis-label">Importance</h3>
-            </div> -->
-
             <div id="quadrants" class="quadrants" ondrop="drop_handler(event, this)" ondragover="dragover_handler(event)">
+                <!-- <div id="urgent-label">Urgent</div>
+                <div id="not-urgent-label">Not Urgent</div>
+                <div id="important-label">Important</div>
+                <div id="not-important-label">Not important</div> -->
+
+                <div id="x-label"><span class="axis-label-arrow">&#10230;</span> Passion / Joy <span class="axis-label-arrow">&#10230;</span></div>
+                <div id="y-label"><span class="axis-label-arrow">&#10230;</span> Talent / Skill <span class="axis-label-arrow">&#10230;</span></div>
                 <div class="quadrant" data-quadrant="Q1">
-                    <div class="quadrant-label" id="q1-label">Do</div>
+                    <div class="quadrant-label" id="q1-label">Teach</div>
                 </div>
                 <div class="quadrant" data-quadrant="Q2">
-                    <div class="quadrant-label" id="q2-label">Schedule</div>
+                    <div class="quadrant-label" id="q2-label">Do</div>
                 </div>
                 <div class="quadrant" data-quadrant="Q3">
                     <div class="quadrant-label" id="q3-label">Delegate</div>
                 </div>
                 <div class="quadrant" data-quadrant="Q4">
-                    <div class="quadrant-label" id="q4-label">Delete</div>
+                    <div class="quadrant-label" id="q4-label">Learn</div>
                 </div>
             </div>
-
-            <!-- <div id="x-axis">
-                <h3 id="x-axis-label" class="axis-label">Click to Edit</h3>
-            </div> -->
         </div>
-        <div>
-            <form onsubmit="addItem(event)">
+        <div id="bank" class="bank" ondrop="drop_handler(event, this)" ondragover="dragover_handler(event)">
+            <form class="add-form" onsubmit="addItem(event)">
                 <button type="submit">Add</button>
                 <input type="text" name="add-item" id="add-item" placeholder="Add Item" />
             </form>
-        </div>
-        <div id="bank" class="bank" ondrop="drop_handler(event, this)" ondragover="dragover_handler(event)">
-            <div class="item" draggable="true" id="1" ondragstart="dragstart_handler(event)">Thing 1</div>
-            <div class="item" draggable="true" id="2" ondragstart="dragstart_handler(event)">Thing 2</div>
-            <div class="item" draggable="true" id="3" ondragstart="dragstart_handler(event)">Thing 3</div>
+            <div class="item" draggable="true" id="1" ondragstart="dragstart_handler(event)">Product design</div>
+            <div class="item" draggable="true" id="2" ondragstart="dragstart_handler(event)">Website build</div>
+            <div class="item" draggable="true" id="3" ondragstart="dragstart_handler(event)">Auto repair</div>
+            <div class="item" draggable="true" id="4" ondragstart="dragstart_handler(event)">App maintainence</div>
+            <div class="item" draggable="true" id="5" ondragstart="dragstart_handler(event)">Feature development</div>
+            <div class="item" draggable="true" id="6" ondragstart="dragstart_handler(event)">Guitar</div>
+            <div class="item" draggable="true" id="7" ondragstart="dragstart_handler(event)">Project management</div>
+            <div class="text-gray" style="position: absolute; bottom:0; left:4px;">Drag and drop an item into the matrix</div>
             <div id="trash-can" ondrop="drop_trash(event, this)" ondragover="dragover_trash(event)">
                 <h6>TRASH<br/>CAN</h6>
             </div>
         </div>
-        
+
+        <p class="text-center mt-0">
+            <code>const techStack = [html, css, vanilla-js, love];</code>
+        </p>
     </div>
     <footer>
         <p class="copyright">&copy; This is a copyright symbol</p>
     </footer>
     <script>
+        const techStach = [html, css, vanilla-js, love];
         function addItem(ev) {
             ev.preventDefault();
             const itemTextInput = document.getElementById('add-item');
@@ -237,17 +284,6 @@
                 droppedItem.dataset.y = 0;
             }
             el.appendChild(droppedItem);
-          }
-          
-          function shareLink() {
-            const url = new URL(window.location.href);
-            console.log(url);
-            url.search = "data=" + encodeURIComponent(serialize());
-            console.log(url.href);
-            ``
-            navigator.clipboard.writeText(url.href).then(function(x) {
-                alert("Link copied to clipboard!");
-            });
           }
           
           function createItem(id, text, x = 0, y = 0, isPlaced = false) {

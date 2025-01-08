@@ -24,28 +24,19 @@ button {
 }
 
 /* TABLES */
-table.table-border, table.table-border > thead > tr > th,  table.table-border > tbody > tr > td  {
-    border: 1px solid; 
-}
-
-
-/* table, th, td { 
-    border: 1px solid; 
-} */
-th { 
-    padding: .5rem; 
-}
-td { 
-    padding: .3rem; 
-}
+table.table-border, table.table-border > thead > tr > th,  table.table-border > tbody > tr > td { border: 1px solid; }
+th { padding: .5rem; }
+td { padding: .3rem; }
 
 blockquote { 
     padding: .5rem; 
     background-color: var(--light-gray); 
 }
+
 nav {
-    padding-top: 1rem;
+    
 }
+
 nav a {
     font-size: 1.25rem;
     font-family: initial;
@@ -83,8 +74,16 @@ footer {
     margin-top: 40px;
 }
 
+/* forms */
+select, textarea, input, button { 
+    font-family: inherit; 
+    font-style: inherit;
+}
+
 /* utils */
 .m-0 {margin: 0}
 .mt-0 {margin-top: 0}
 .mb-0 {margin-bottom: 0}
 .strikethrough {text-decoration: line-through;}
+.text-center {text-align: center;}
+.text-gray {color: var(--gray)}

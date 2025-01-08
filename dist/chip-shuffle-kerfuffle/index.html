@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Russ Forstall | Chip Shuffle Kerfuffle</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/" title="HOME">&#x210B;</a> |
+            <a href="code" title="CODE">&lt;/&gt;</a> |
+            <a href="music" title="MUSIC">&#9835;</a> 
+        </nav>
+        <h1>The Chip Shuffle Kerfuffle <span class="title-date">1/7/2025</span></h1>
+        <p><a href="app">Try out the chip shuffler</a></p>
+        <p>
+            I used to host weekly poker games. Nothing too serious. 5/10 cent blinds, beer, and shenanigans. 
+            One thing I picked up from those times that I still do is play with poker chips. I always have a 
+            stack at my desk that I play with or shuffle while I'm working or thinking. Kinda like a fidget toy. 
+        </p>
+
+        <img src="/img/chip-shuffle-bw.gif" alt="Shuffling chips" style="max-width: 250px; margin:auto; display: block;" >
+
+        <p>
+            Today, as I was shuffling a stack with an equal number of different colored chips, I noticed different patterns
+            in the stack after each shuffle, and If I shuffled enough they'd end up how they started. For instance, if there
+            were seven of each color and they started out 
+            grouped by color, it took four perfect shuffles for them to be grouped by color again. 
+        </p>
+        <p>
+            This made me wonder how the number of required shuffles would change based on the number of chips in
+            the stack. So… I started shuffling stacks and made a table showing the relationship between number of
+            chips and number of shuffles. 
+        </p>
+        <table class="table-border" style="margin: auto;">
+            <thead>
+                <tr>
+                    <th># of each color</th>
+                    <th>shuffles to regroup</th>
+                    <th>shuffles to original</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>5</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>6</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>4</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>4</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>9</td>
+                    <td>9</td>
+                </tr>
+            </tbody>
+        </table>
+
+         <p>   
+            I naively expected to be able to recognize a pattern but after eight 
+            iterations, I was nowhere close to understanding what was going on, and as the stack of poker chips grew 
+            larger, the harder it became to shuffle them consistently. So… I wrote a bit of software to emulate what the shuffles were
+            doing. <a href="chip-shuffler">Check it out.</a>
+        </p>
+        <p>
+            I ran the model for stacks from 6 to 40 chips and saw no obvious pattern. I tried 100 chips, then 1,000
+            chips, then 2,000, then 10,000. (<a href="resources/shuffle-results.csv">Here's the data if you dare to care.</a>) I even plotted a graph for a visually aid.  
+        </p>
+        <img src="img/chip-shuffle-graph.png" alt="chip shuffle graph" style="width: 100%;" />
+        <p class="img-txt">Almost 6,000 chip shuffle models.</p>
+            
+        <p>
+            While I could see lines and patterns in the graph, I was no closer to identifying a predictable pattern. 
+            A mathematician might look at this and be able to know what's going on, but a mathematician I am not.
+        </p>
+
+        <p>
+            I recalled seeing someone shuffle an ordered deck 
+            of cards in such a way that after several shuffles it returned to it's orginal order. A quick googly taught me 
+            this was called "faro shuffle", and the mathematics behind it are pretty much the same as my poker chip shuffles!
+            I found a paper published in 1983 titled "The Mathematics of Perfect Shuffles" by Diaconis, Graham, and Kantor 
+            which contained the answers I was looking for. I read just enough of this paper to satisfy my tiny brain's curiosity
+            and moved on.
+        </p>
+
+        <blockquote>
+            The biggest difference between my poker chip shuffle problem and the faro shuffle problem, is that I stopped when the poker chips 
+            were yet again grouped by color, not necessarily in it's original order. So in many cases it took half the amount of shuffles
+            as it would have to restore it to its original state. For instance when there are 8 white chips and 8 brown chips, it takes 
+            4 shuffles for them to be grouped by color again, though while the white chips started on the bottom, they ended on the top.
+            Another 4 shuffles would restore the stack to it's original state.
+        </blockquote>
+
+        <h4>Resources</h4>
+
+        <p>
+            I read (barely) a <a target="_blank" href="https://mathweb.ucsd.edu/~ronspubs/83_05_shuffles.pdf">mathematics paper</a> today, 
+            <a target="_blank" href="https://www.youtube.com/watch?v=MtBzp_-h0oQ">watched a nice lady explain cycles and permutations</a>,
+            and learned new terms like <a target="_blank" href="https://en.wikipedia.org/wiki/Combinatorics">"combinatorics"</a>. 
+            And, while I still have questions my curiosity has been quelched for now. 
+            I'll probably bring this up one night after a few beers and not be able to explain it all. 
+        </p>
+
+        
+    </div>
+    <footer>
+        <p class="copyright">&copy; This is a copyright symbol</p>
+    </footer>
+</body>
+</html>

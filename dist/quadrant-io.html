@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Russ Forstall | Quadrant IO</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/quad-styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="#" title="HOME">&#x210B;</a> |
+            <a href="code" title="CODE">&#60;/&#62;</a> |
+            <a href="music" title="MUSIC">&#9835;</a> |
+            <a href="contact" title="CONTACT">&#x2709;</a>
+            
+        </nav>
+        <h1>Enter the Matrix</h1>
+        <p><a href="#" class="strikethrough">the write-up</a></p>
+
+        <h4 class="mb-0">here's the latest</h4>
+        <ul class="mt-0">
+            <li>Chip Shuffle Kerfuffle | <a href="chip-shuffle-kerfuffle">write-up</a> | <a href="chip-shuffler">app</a></li>
+            <li>Love on the Quadrant | <span class="strikethrough">write-up</span> | <a href="quadrant-io">app</a></li>
+        </ul>
+
+        <h4 class="mb-0">you can also find me here</h4>
+        <ul class="mt-0">
+            <li><a target="_blank" href="https://www.instagram.com/russforstall">instagram</a></li>
+            <li><a target="_blank" href="https://www.facebook.com/russ.forstall">facebook</a></li>
+            <li><a target="_blank" href="https://github.com/russ4stall">github</a></li>
+            <li><a target="_blank" href="https://open.spotify.com/artist/0yexJmGWze0UmWEeXGNtTs?si=zXXw_swzT0qnUQ6bn7jJPA">spotify</a></li>
+        </ul>
+    </div>
+    <footer>
+        <p class="copyright">&copy; This is a copyright symbol</p>
+    </footer>
+
+    <main>
+        <nav>
+            <button onclick="clearAll()">Clear All</button>
+            <button onclick="resetItems()">Reset</button>
+            <button onclick="shareLink()">Share</button>
+            <label for="show-quadrants">
+                Show Quadrants
+                <input type="checkbox" name="show-quadrants" id="show-quadrants" checked onchange="toggleQuadrantsVisibility()" />
+            </label>
+        </nav>
+        <h3 id="main-title" class="reset-text" data-default="Click to Edit" onclick="editLabel(event)">CLick to Edit</h3>
+        <div>
+            <form onsubmit="addItem(event)">
+                <button type="submit">Add</button>
+                <input type="text" name="add-item" id="add-item" placeholder="Add Item" />
+            </form>
+        </div>
+        <div id="bank" class="bank" ondrop="drop_handler(event, this)" ondragover="dragover_handler(event)">
+            <div class="item" draggable="true" id="1" ondragstart="dragstart_handler(event)">Thing 1</div>
+            <div class="item" draggable="true" id="2" ondragstart="dragstart_handler(event)">Thing 2</div>
+            <div class="item" draggable="true" id="3" ondragstart="dragstart_handler(event)">Thing 3</div>
+            <div id="trash-can" ondrop="drop_trash(event, this)" ondragover="dragover_trash(event)">
+                <h6>TRASH</h6>
+            </div>
+        </div>
+
+        <div id="graph-container">
+
+            <div id="y-axis">
+                <h3 id="y-axis-label" class="axis-label reset-text" data-default="Click to Edit" onclick="editLabel(event)">Click to Edit</h3>
+                <div class="scale-thing"></div>
+            </div>
+
+            <div id="quadrants" class="quadrants" ondrop="drop_handler(event, this)" ondragover="dragover_handler(event)">
+
+                <div class="quadrant" data-quadrant="Q1">
+                    <div class="quadrant-label reset-text" id="q1-label" data-default="Click to Edit" onclick="editLabel(event)">Click to Edit</div>
+                </div>
+                <div class="quadrant" data-quadrant="Q2">
+                    <div class="quadrant-label reset-text" id="q2-label" data-default="Click to Edit" onclick="editLabel(event)">Click to Edit</div>
+                </div>
+                <div class="quadrant" data-quadrant="Q3">
+                    <div class="quadrant-label reset-text" id="q3-label" data-default="Click to Edit" onclick="editLabel(event)">Click to Edit</div>
+                </div>
+                <div class="quadrant" data-quadrant="Q4">
+                    <div class="quadrant-label reset-text" id="q4-label" data-default="Click to Edit" onclick="editLabel(event)">Click to Edit</div>
+                </div>
+            </div>
+
+            <div id="x-axis">
+                <div class="scale-thing"></div>
+                <h3 id="x-axis-label" class="axis-label reset-text" data-default="Click to Edit" onclick="editLabel(event)">Click to Edit</h3>
+            </div>
+        </div>
+
+        
+    </main>
+    <script src="js/quadrant-io.js"></script>
+</body>
+</html>

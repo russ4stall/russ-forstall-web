@@ -1,0 +1,127 @@
+nav {
+    margin-bottom: 1rem;
+}
+
+label {
+    border: 1px solid #767676;
+    padding: .15rem 0.5rem;
+    font-size: .8rem;
+    border-radius: .15rem;
+    font-family: sans-serif;
+    background-color: #EFEFEF;
+}
+
+#main-title {
+    text-align: center;
+}
+
+.bank { 
+    float: left;
+    width: 20%;
+    height: 300px;
+    border: 1px solid red;
+    position: relative;
+}
+
+.bank .item {
+    position: initial;
+}
+
+#graph-container {
+    float: left;
+}
+
+.quadrants { 
+    display: inline-block;
+    width: 604px;
+    position: relative;
+    border: 1px solid salmon;
+    background: transparent;
+}
+
+#y-axis {
+    display: inline-block;
+    height: 604px;
+    width: 100px;
+}
+
+#y-axis .axis-label {
+    display: flex;
+    float: left;
+    justify-content: center;
+    align-content: center;
+    margin-top: 290px;
+    -moz-transform: rotate(270deg);  /* FF3.5+ */
+    -o-transform: rotate(270deg);  /* Opera 10.5 */
+    -webkit-transform: rotate(-90deg);
+}
+
+#y-axis .scale-thing {
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    background-color: black;
+    width: 15px;
+    height: 100%;
+    float: right;
+}
+
+#x-axis {
+    margin-left: 180px;
+}
+
+#x-axis .axis-label {
+    text-align: center;
+}
+
+#x-axis .scale-thing {
+    clip-path: polygon(100% 0, 0 0, 100% 100%);
+    background-color: black;
+    width: 100%;
+    height: 15px;
+}
+
+.quadrants .item {
+    position: absolute;
+    z-index: 1;
+}
+
+.quadrant-label {
+    float: right;
+    padding: .25rem;
+    background-color: lightgray;
+    z-index: 2;
+}
+
+.quadrant-title-input {
+    text-align: right;
+}
+
+.quadrant { 
+    float: left;
+    width: 300px;
+    height: 300px;
+    border: 1px solid salmon;
+    background: transparent;
+}
+
+.item {
+    display: inline-block;
+    background-color: lightcoral;
+    padding: 2px;
+    margin: 1px;
+    z-index: 100;
+    padding: .20rem .5rem;
+    border-radius: 10rem;
+}
+
+#trash-can {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: gray;
+}
+
+#trash-can h6 { 
+    text-align: center;
+}

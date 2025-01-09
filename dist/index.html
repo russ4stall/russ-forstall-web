@@ -26,28 +26,33 @@
             <li><a target="_blank" href="https://github.com/russ4stall">github</a></li>
             <li><a target="_blank" href="https://open.spotify.com/artist/0yexJmGWze0UmWEeXGNtTs?si=zXXw_swzT0qnUQ6bn7jJPA">spotify</a></li>
         </ul>
-        <h4 class="mb-0">ask me a question or just say hello</h4>
-        <form action="#">
+        <h4 class="mb-0">leave me a message &#9743;</h4>
+        
+        
+
+        <form action="/ping-me" method="post">
             <p>
-                <select name="contact-topic" id="">
-                    <option value="hey">just saying hi</option>
-                    <option value="build-me-something">build me something</option>
-                    <option value="help-me-with-my-product">help me with my product</option>
-                    <option value="write-me-a-song">write me a song</option>
-                    <option value="produce-my-music">produce my music</option>
+                <select name="whats-up">
+                    <option>just saying hi</option>
+                    <option>build me something</option>
+                    <option>help me with my product</option>
+                    <option>write me a song</option>
+                    <option>produce my music</option>
+                    <option>something else</option>
                 </select>
             </p>
             <p>
-                <textarea style="min-width: 350px; height: 100px;" name="" id="" placeholder="tell me something good"></textarea>
+                <textarea style="min-width: 350px; height: 100px;" name="something-good" placeholder="tell me something good" required></textarea>
+                <br>
+                <small>&#10035; don't forget to leave your contact info</small>
             </p>
             <p>
                 <button>send</button>
             </p>
             
-            
             <br><br>
             
-        </form>
+        
     </div>
     <footer>
         <p class="copyright">&copy; This is a copyright symbol</p>

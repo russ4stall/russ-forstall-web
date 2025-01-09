@@ -1,9 +1,10 @@
-const { watch } = require('fs');
 const path = require('path');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
-module.exports = {
+
+const mainConfig = {
   entry: {
-    'chip-shuffler': "./src/chip-shuffler"
+    'chip-shuffler': "./src/chip-shuffler",
   },
   devtool: 'eval-source-map',
   module: {
@@ -17,9 +18,31 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    fallback: {
+      "net": false,
+      tls: false,
+      dns: false
+
+    }
   },
   output: {
     path: path.resolve(__dirname, 'dist/js'),
-
   },
+  plugins: [
+		new NodePolyfillPlugin(),
+	],
 };
+
+// // Multiple configs for multiple outputs
+// var functionsConfig = Object.assign({}, mainConfig, {
+//   name: "functionsConfig",
+//   entry: { 
+//     'ping-me': './src/functions/ping-me'
+//   },
+//   output: {
+//     path: path.resolve(__dirname, 'functions'),
+//   }
+// });
+
+// Return Array of Configurations
+module.exports = [mainConfig];

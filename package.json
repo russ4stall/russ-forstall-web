@@ -5,13 +5,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack --config webpack.config.js",
-    "watch": "npx webpack --watch --mode=development --config webpack.config.js"
+    "watch": "npx webpack --watch --mode=development --config webpack.config.js",
+    "dev": "npx wrangler pages dev dist"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@types/node": "^22.10.5",
+    "@types/nodemailer": "^6.4.17",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "ts-loader": "^9.5.1",
@@ -20,6 +22,8 @@
   },
   "dependencies": {
     "@types/react": "^19.0.3",
-    "@types/react-dom": "^19.0.2"
+    "@types/react-dom": "^19.0.2",
+    "node-polyfill-webpack-plugin": "^4.1.0",
+    "nodemailer": "^6.9.16"
   }
 }

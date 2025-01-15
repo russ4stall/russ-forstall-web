@@ -139,7 +139,16 @@ button:hover {
 .p-2 {padding:.5rem}
 .mb-1 {margin-bottom: .25rem}
 .mb-2 {margin-bottom: .5rem}
-
+.mb-3 {margin-bottom: .75rem}
+.mb-4 {margin-bottom: 1rem}
+.mt-1 {margin-top: .25rem}
+.mt-2 {margin-top: .5rem}
+.mt-3 {margin-top: .75rem}
+.mt-4 {margin-top: 1rem}
+.ml-1 {margin-left: .25rem}
+.ml-2 {margin-left: .5rem}
+.ml-3 {margin-left: .75rem}
+.ml-4 {margin-left: 1rem}
 
 /* mobile */
 @media (max-width: 800px) {

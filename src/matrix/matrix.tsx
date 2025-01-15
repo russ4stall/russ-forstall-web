@@ -139,10 +139,7 @@ export default function Matrix() {
 
     return(
         <>
-        {saveId && 
-            
-            <a href={getShareLink()}>{getShareLink()}</a>
-        }
+        
             <div id='grid' style={{ position: 'relative', display: 'grid', gridTemplateColumns: '40px auto auto', gridTemplateRows: '40px auto auto' }} >
                 <div className='axis-label' style={{ gridColumn: '2 / span 2', gridRow: '1 / span 1' }}>
                     {matrixSettings.xAxisLabel && <span> &#10230; {matrixSettings.xAxisLabel} &#10230;</span> }
@@ -173,7 +170,7 @@ export default function Matrix() {
                     <button onClick={saveMatrixData} onMouseEnter={() => setHelpTextKey(HelpTextKey.SAVE_SHARE)} onMouseLeave={setDefaultHelpText}>save/share</button>
                 </div>
                 <div id='bank' style={{ gridRow: '2 / span 1' }} onDrop={handleBankDrop} onDragOver={e => e.preventDefault()} >
-                    <div style={{  }}>
+                    <div>
                         <form method='post' onSubmit={handleAddItems} onMouseEnter={() => setHelpTextKey(HelpTextKey.ADD_ITEM)} onMouseLeave={setDefaultHelpText}>
                             <input type="text" name='itemText' placeholder='add items' />&nbsp;
                             <button type='submit'>add</button>
@@ -187,13 +184,17 @@ export default function Matrix() {
                         <div id={TRASH_CAN_ID} onMouseEnter={() => setHelpTextKey(HelpTextKey.TRASH)} onMouseLeave={setDefaultHelpText}></div>
                     </div>
                 </div>
-                <div>
+                <div className='ml-2'>
                     <button onClick={() => setIsSettingsOpen(!isSettingsOpen)} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText}>{isSettingsOpen ? 'hide settings' : 'show settings'}</button>&nbsp;
                     
                 </div>
                 {isSettingsOpen && <SettingsForm settings={matrixSettings} setSettings={setMatrixSettings} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText} />}
-                
-                
+                {saveId && 
+                <div className='ml-2 mt-4'>
+                    Use this link to return to this matrix in this state.
+                    <a href={getShareLink()}>{getShareLink()}</a>
+                </div>
+        }
             </div>
         </>
     );

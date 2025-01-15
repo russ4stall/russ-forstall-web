@@ -139,7 +139,12 @@ export default function Matrix() {
 
     return(
         <>
-        
+            {saveId && 
+                <div className='ml-2 mb-2' style={{maxWidth: '600px'}}>
+                    Use this link to return to this matrix in this state. <br />
+                    <a href={getShareLink()}>{getShareLink()}</a>
+                </div>
+                }
             <div id='grid' style={{ position: 'relative', display: 'grid', gridTemplateColumns: '40px auto auto', gridTemplateRows: '40px auto auto' }} >
                 <div className='axis-label' style={{ gridColumn: '2 / span 2', gridRow: '1 / span 1' }}>
                     {matrixSettings.xAxisLabel && <span> &#10230; {matrixSettings.xAxisLabel} &#10230;</span> }
@@ -189,12 +194,7 @@ export default function Matrix() {
                     
                 </div>
                 {isSettingsOpen && <SettingsForm settings={matrixSettings} setSettings={setMatrixSettings} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText} />}
-                {saveId && 
-                <div className='ml-2 mt-4'>
-                    Use this link to return to this matrix in this state.
-                    <a href={getShareLink()}>{getShareLink()}</a>
-                </div>
-        }
+                
             </div>
         </>
     );

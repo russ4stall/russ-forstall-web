@@ -12,8 +12,8 @@ export type MatrixSettings = {
 
 export const settingsTemplates = {
     geoghagen: {
-        xAxisLabel: 'Passion / Joy',
-        yAxisLabel: 'Skill / Talent',
+        xAxisLabel: 'Passion',
+        yAxisLabel: 'Skill',
         labelOne: 'Teach',
         labelTwo: 'Do',
         labelThree: 'Delegate',

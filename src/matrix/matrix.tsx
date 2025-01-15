@@ -4,13 +4,15 @@ import { HelpText, HelpTextKey } from './help-text';
 import { MatrixSettings, SettingsForm, settingsTemplates } from './settings';
 
 const gridItems = [
-    new Item('billy'),
-    new Item('bobby'),
-    new Item('franky'),
-    new Item('thyme'),
-    new Item('basil'),
-    new Item('oregano'),
-    new Item('rosemary')
+    new Item('coding'),
+    new Item('ui design'),
+    new Item('writing proposals'),
+    new Item('client meetings'),
+    new Item('marketing'),
+    new Item('application architecture'),
+    new Item('devOps'),
+    new Item('social media'),
+    new Item('personnel management')
 ]
 
 export default function Matrix() {

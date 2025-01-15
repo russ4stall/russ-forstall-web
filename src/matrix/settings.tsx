@@ -14,16 +14,16 @@ export const settingsTemplates = {
     geoghagen: {
         xAxisLabel: 'Passion',
         yAxisLabel: 'Skill',
-        labelOne: 'Teach',
-        labelTwo: 'Do',
+        labelOne: 'Do',
+        labelTwo: 'Teach',
         labelThree: 'Delegate',
         labelFour: 'Learn'
     } as MatrixSettings,
     eisenhower: {
         xAxisLabel: 'Urgency',
         yAxisLabel: 'Importance',
-        labelOne: 'Schedule',
-        labelTwo: 'Do now',
+        labelOne: 'Do now',
+        labelTwo: 'Schedule',
         labelThree: 'Delete',
         labelFour: 'Delegate'
     } as MatrixSettings

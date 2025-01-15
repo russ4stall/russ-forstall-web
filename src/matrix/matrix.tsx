@@ -145,7 +145,7 @@ export default function Matrix() {
                     {matrixSettings.xAxisLabel && <span> &#10230; {matrixSettings.xAxisLabel} &#10230;</span> }
                 </div>
                 <div className='axis-label' style={{ gridColumn: '1 / span 1', gridRow: '2 / span 2' }}>
-                    <span className='rotate-270' style={{ whiteSpace: 'nowrap' }}>&#10230; {matrixSettings.yAxisLabel} &#10230;</span>
+                    {matrixSettings.yAxisLabel && <span className='rotate-270' style={{ whiteSpace: 'nowrap' }}>&#10230; {matrixSettings.yAxisLabel} &#10230;</span> }
                 </div>
                 <div ref={matrixDropAreaRef} id='matrix-drop-area' style={{ position: 'relative', gridColumn: '2 / span 2', gridRow: '2 / span 2' }} onDrop={handleGridDrop} onDragOver={e => e.preventDefault()}>
                     {items.filter(item => item.isPlaced).map((item) => <DraggableItem key={item.id} color={matrixSettings.itemColor} item={item} handleDrag={handleItemDragStart} />)}

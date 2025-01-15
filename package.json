@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack --config webpack.config.js",
     "watch": "npx webpack --watch --mode=development --config webpack.config.js",
-    "dev": "npx wrangler pages dev dist"
+    "dev": "npx wrangler pages dev dist",
+    "kv-put-local": "npx wrangler kv key put --local --namespace-id=1234567890"
   },
   "author": "",
   "license": "ISC",

@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Item, DraggableItem } from './item';
 import { HelpText, HelpTextKey } from './help-text';
 import { MatrixSettings, SettingsForm, settingsTemplates } from './settings';
+import { spawn } from 'child_process';
 
 const gridItems = [
     new Item('coding'),
@@ -21,8 +22,41 @@ export default function Matrix() {
     const [helpTextKey, setHelpTextKey] = useState<HelpTextKey | null>(null);
     const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
     const [matrixSettings, setMatrixSettings] = useState<MatrixSettings>(settingsTemplates.geoghagen);
-
+    const [saveId, setSaveId] = useState<string | null>(null);
     const matrixDropAreaRef = useRef(null);
+
+    useEffect(() => {
+        const queryParams = new URLSearchParams(window.location.search);
+        const saveId = queryParams.get('save');
+
+        if (saveId) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                console.log(this.response);
+                if (this.response !== "null") {
+                    const { matrixSettings, items } = JSON.parse(this.response); 
+                    setMatrixSettings(matrixSettings);
+                    setItems(items);
+                };
+            }
+            xhttp.open("GET", `/enter-the-eisenhower-matrix/saves/${saveId}`);
+            xhttp.send();
+        }
+    }, []);
+
+    const saveMatrixData = () => {
+        const data = { matrixSettings, items, saveId: self.crypto.randomUUID() };
+
+        const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                if (this.response != null)
+                    setSaveId(this.response)
+            }
+
+            xhttp.open("POST", `/enter-the-eisenhower-matrix/saves/create`);
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(data));
+    }
 
     const handleAddItems = (e: any) => {
         e.preventDefault();
@@ -98,9 +132,17 @@ export default function Matrix() {
         setHelpTextKey(HelpTextKey.DEFAULT)
     }
 
+    const getShareLink = () => { 
+        const url = new URL(window.location.href); 
+        return `${url.origin}/enter-the-eisenhower-matrix/app?save=${saveId}`;
+    }
+
     return(
         <>
-
+        {saveId && 
+            
+            <a href={getShareLink()}>{getShareLink()}</a>
+        }
             <div id='grid' style={{ position: 'relative', display: 'grid', gridTemplateColumns: '40px auto auto', gridTemplateRows: '40px auto auto' }} >
                 <div className='axis-label' style={{ gridColumn: '2 / span 2', gridRow: '1 / span 1' }}>
                     {matrixSettings.xAxisLabel && <span> &#10230; {matrixSettings.xAxisLabel} &#10230;</span> }
@@ -128,8 +170,7 @@ export default function Matrix() {
                 <div id='actions' className='p-2' style={{ gridRow: '1 / span 1' }}>
                     <button onClick={handleReset} onMouseEnter={() => setHelpTextKey(HelpTextKey.RESET)} onMouseLeave={setDefaultHelpText}>reset</button>&nbsp;
                     <button onClick={handleClear} onMouseEnter={() => setHelpTextKey(HelpTextKey.CLEAR)} onMouseLeave={setDefaultHelpText}>clear</button>&nbsp;
-                    
-                    <button onClick={() => {alert('This is coming soon...')}} onMouseEnter={() => setHelpTextKey(HelpTextKey.SAVE_SHARE)} onMouseLeave={setDefaultHelpText}>save/share</button>
+                    <button onClick={saveMatrixData} onMouseEnter={() => setHelpTextKey(HelpTextKey.SAVE_SHARE)} onMouseLeave={setDefaultHelpText}>save/share</button>
                 </div>
                 <div id='bank' style={{ gridRow: '2 / span 1' }} onDrop={handleBankDrop} onDragOver={e => e.preventDefault()} >
                     <div style={{  }}>

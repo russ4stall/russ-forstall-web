@@ -22,11 +22,12 @@ export default function Matrix() {
 
     const matrixDropAreaRef = useRef(null);
 
-    const handleAddItem = (e: any) => {
+    const handleAddItems = (e: any) => {
         e.preventDefault();
         const itemTextField = e.target.itemText;
         if (!itemTextField.value) return;
-        setItems([...items, new Item(itemTextField.value)]);
+        const itemsToAdd: Item[] = itemTextField.value.split(',').map((itemText: string) => new Item(itemText));
+        setItems([...items, ...itemsToAdd]);
         itemTextField.value = '';
     }
 
@@ -100,7 +101,7 @@ export default function Matrix() {
 
             <div id='grid' style={{ position: 'relative', display: 'grid', gridTemplateColumns: '40px auto auto', gridTemplateRows: '40px auto auto' }} >
                 <div className='axis-label' style={{ gridColumn: '2 / span 2', gridRow: '1 / span 1' }}>
-                &#10230; {matrixSettings.xAxisLabel} &#10230;
+                    {matrixSettings.xAxisLabel && <span> &#10230; {matrixSettings.xAxisLabel} &#10230;</span> }
                 </div>
                 <div className='axis-label' style={{ gridColumn: '1 / span 1', gridRow: '2 / span 2' }}>
                     <span className='rotate-270' style={{ whiteSpace: 'nowrap' }}>&#10230; {matrixSettings.yAxisLabel} &#10230;</span>
@@ -121,30 +122,36 @@ export default function Matrix() {
                     <div className='quadrant-label'>{matrixSettings.labelFour}</div>
                 </div>
             </div>
-            <div id='column-1'>
-                <div id='bank' onDrop={handleBankDrop} onDragOver={e => e.preventDefault()} >
-                <div style={{  }}>
-                    <form method='post' onSubmit={handleAddItem} onMouseEnter={() => setHelpTextKey(HelpTextKey.ADD_ITEM)} onMouseLeave={setDefaultHelpText}>
-                        <input type="text" name='itemText' placeholder='add new item' />&nbsp;
-                        <button type='submit'>add</button>
-                    </form>
+            <div id='action-and-info' style={{ display: 'grid', gridTemplateColumns: 'auto', gridTemplateRows: '40px auto auto' }}>
+                <div id='actions' className='p-2' style={{ gridRow: '1 / span 1' }}>
+                    <button onClick={handleReset} onMouseEnter={() => setHelpTextKey(HelpTextKey.RESET)} onMouseLeave={setDefaultHelpText}>reset</button>&nbsp;
+                    <button onClick={handleClear} onMouseEnter={() => setHelpTextKey(HelpTextKey.CLEAR)} onMouseLeave={setDefaultHelpText}>clear</button>&nbsp;
+                    
+                    <button onClick={() => {alert('This is coming soon...')}} onMouseEnter={() => setHelpTextKey(HelpTextKey.SAVE_SHARE)} onMouseLeave={setDefaultHelpText}>save/share</button>
                 </div>
-                <div id='itemBank' style={{ marginTop: '.5rem' }} >
-                    {items.filter(item => !item.isPlaced).map((item) => <DraggableItem key={item.id} color={matrixSettings.itemColor} item={item} handleDrag={handleItemDragStart} />)}
-                    <div id={TRASH_CAN_ID} onMouseEnter={() => setHelpTextKey(HelpTextKey.TRASH)} onMouseLeave={setDefaultHelpText}></div>
+                <div id='bank' style={{ gridRow: '2 / span 1' }} onDrop={handleBankDrop} onDragOver={e => e.preventDefault()} >
+                    <div style={{  }}>
+                        <form method='post' onSubmit={handleAddItems} onMouseEnter={() => setHelpTextKey(HelpTextKey.ADD_ITEM)} onMouseLeave={setDefaultHelpText}>
+                            <input type="text" name='itemText' placeholder='add items' />&nbsp;
+                            <button type='submit'>add</button>
+                        </form>
+                    </div>
+                    <div id='itemBank' style={{ marginTop: '.5rem' }} >
+                        {items.filter(item => !item.isPlaced).map((item) => <DraggableItem key={item.id} color={matrixSettings.itemColor} item={item} handleDrag={handleItemDragStart} />)}
+                        <div id='help-text' className=''>
+                            <HelpText helpTextKey={helpTextKey} />
+                        </div>
+                        <div id={TRASH_CAN_ID} onMouseEnter={() => setHelpTextKey(HelpTextKey.TRASH)} onMouseLeave={setDefaultHelpText}></div>
+                    </div>
                 </div>
+                <div>
+                    <button onClick={() => setIsSettingsOpen(!isSettingsOpen)} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText}>{isSettingsOpen ? 'hide settings' : 'show settings'}</button>&nbsp;
+                    
+                </div>
+                {isSettingsOpen && <SettingsForm settings={matrixSettings} setSettings={setMatrixSettings} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText} />}
+                
+                
             </div>
-            <div id='actions' className='p-2'>
-                <button onClick={handleReset} onMouseEnter={() => setHelpTextKey(HelpTextKey.RESET)} onMouseLeave={setDefaultHelpText}>reset</button>&nbsp;
-                <button onClick={handleClear} onMouseEnter={() => setHelpTextKey(HelpTextKey.CLEAR)} onMouseLeave={setDefaultHelpText}>clear</button>&nbsp;
-                <button onClick={() => setIsSettingsOpen(!isSettingsOpen)} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText}>{isSettingsOpen ? 'hide settings' : 'show settings'}</button>&nbsp;
-                <button onClick={() => {alert('This is coming soon...')}} onMouseEnter={() => setHelpTextKey(HelpTextKey.SAVE_SHARE)} onMouseLeave={setDefaultHelpText}>save/share</button>
-            </div>
-            {isSettingsOpen && <SettingsForm settings={matrixSettings} setSettings={setMatrixSettings} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText} />}
-            <div id='help-text' className='p-2'>
-                <HelpText helpTextKey={helpTextKey} />
-            </div>
-        </div>
         </>
     );
 }

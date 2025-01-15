@@ -20,15 +20,15 @@ export function HelpText({helpTextKey}: HelpTextParams) {
             switch (helpTextKey) {
                 case HelpTextKey.ADD_ITEM:
                     return (
-                        <p>Add an item to the item bank.</p>
+                        <p>Add an item to the item bank. <span className="text-success">TIP:Paste a comma separated list for quick entry.</span></p>
                     )
                 case HelpTextKey.CLEAR:
                     return (
-                        <p>Clear all items from the matrix AND the item bank. <span className="text-danger">DANGER! This cannot be undone.</span></p>
+                        <p>Clear all items from the matrix AND the item bank. <span className="text-danger">DANGER:This cannot be undone!</span></p>
                     )
                 case HelpTextKey.RESET:
                     return (
-                        <p>Move all items from the matrix back to the item bank. <span className="text-danger">DANGER! This cannot be undone.</span></p>
+                        <p>Move all items from the matrix back to the item bank. <span className="text-danger">DANGER:This cannot be undone!</span></p>
                     )
                 case HelpTextKey.SAVE_SHARE:
                     return (

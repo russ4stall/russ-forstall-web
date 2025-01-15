@@ -1,5 +1,5 @@
 
-#column-1 {
+#action-and-info {
     width: 33%;
 }
 
@@ -24,8 +24,6 @@
     aspect-ratio: 1 / 1;
     border-radius: 15px;
     border: solid 2px black;
-    /* border-top: 3px solid black;
-    border-left: 3px solid black; */
     margin: 2px;
     overflow: hidden;
 }
@@ -47,17 +45,14 @@
 #bank {
     width: 97%;
     float: left;
+    min-height: 200px;
     background: transparent; 
     border-radius: 15px;
     border: solid 2px black;
-    /* border-top: 3px solid black;
-    border-left: 3px solid black; */
-    /* height: 400px; */
-
-    aspect-ratio: 1 / 1;
-    margin-top: 42px;
+    margin-top: 2px;
     margin-bottom: 1rem;
     padding: .5rem;
+    padding-bottom: 100px;
     position: relative;
 }
 
@@ -114,9 +109,12 @@ button:hover {
     background-color: lightgrey;
 }
 
-#actions, #help-text {
-    float: left;
-    width: 100%;
+#help-text p { margin: 0; }
+#help-text {
+    position: absolute;
+    bottom: 0;
+    width: 75%;
+    margin-bottom: .5rem;
 }
 
 #actions button {
@@ -133,6 +131,7 @@ button:hover {
 }
 
 .text-danger {color: firebrick}
+.text-success {color: green}
 
 /* utils */
 .w-100 {width:100%}
@@ -145,7 +144,7 @@ button:hover {
 /* mobile */
 @media (max-width: 800px) {
     #grid { width: 100%; }
-    #column-1 { width: 97%; }
+    #action-and-info { width: 97%; }
     #settings-form tr td { display: block; }
-    #settings-form, #settings-form input, #settings-form input { width: 100%; }
+    #settings-form, #settings-form input, #settings-form select  { width: 100%; }
 }

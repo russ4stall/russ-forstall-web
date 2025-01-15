@@ -51,7 +51,7 @@ export function SettingsForm({ settings, setSettings, onMouseEnter, onMouseLeave
                 <tr>
                     <td>Templates:</td>
                     <td>
-                        <select name="template" onChange={handleTemplateSelection} className="w-100">
+                        <select name="template" onChange={handleTemplateSelection} >
                             <option value="geoghagen">Geoghagen Matrix</option>
                             <option value="eisenhower">Eisenhower Matrix</option>
                         </select>

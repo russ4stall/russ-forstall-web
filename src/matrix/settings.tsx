@@ -46,7 +46,7 @@ export function SettingsForm({ settings, setSettings, onMouseEnter, onMouseLeave
 
     return (
         <>
-            <table onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >
+            <table id="settings-form" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} >
                 <tbody>
                 <tr>
                     <td>Templates:</td>

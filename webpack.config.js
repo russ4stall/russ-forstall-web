@@ -1,12 +1,10 @@
 const path = require('path');
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
-
-const mainConfig = {
+module.exports = {
   entry: {
     'chip-shuffler': "./src/chip-shuffler",
+    'matrix': "./src/matrix/index",
   },
-  devtool: 'eval-source-map',
   module: {
     rules: [
       {
@@ -17,32 +15,9 @@ const mainConfig = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-    fallback: {
-      "net": false,
-      tls: false,
-      dns: false
-
-    }
+    extensions: ['.tsx', '.ts', '.js']
   },
   output: {
     path: path.resolve(__dirname, 'dist/js'),
-  },
-  plugins: [
-		new NodePolyfillPlugin(),
-	],
+  }
 };
-
-// // Multiple configs for multiple outputs
-// var functionsConfig = Object.assign({}, mainConfig, {
-//   name: "functionsConfig",
-//   entry: { 
-//     'ping-me': './src/functions/ping-me'
-//   },
-//   output: {
-//     path: path.resolve(__dirname, 'functions'),
-//   }
-// });
-
-// Return Array of Configurations
-module.exports = [mainConfig];

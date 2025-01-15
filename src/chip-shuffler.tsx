@@ -38,7 +38,7 @@ const ChipStackComponent = ({ numberOfEachColorChip, colorOne, colorTwo }: ChipS
     return (
         <div style={{ display: 'flex', gap: '1rem' }}>
             <p style={{ width: '100px' }}>
-                {stack.toReversed().map((colorHex, index) => (
+                {stack.toReversed().map((colorHex: string, index: number) => (
                     <span key={index} style={{ display: 'block', backgroundColor: colorHex, height: '.5rem', border: '1px solid black' }}></span>
                 ))}
             </p>
@@ -78,7 +78,7 @@ const ChipShufflerApp = () => {
             </p>
             <p>
                 What colors do you want? &nbsp;
-                <input type="color" value={colorOne} onChange={e => setColorOne(e.target.value)} /> &nbsp;
+                <input type="color" value={colorOne} onChange={e => setColorOne((e.target).value )} /> &nbsp;
                 <input type="color" value={colorTwo} onChange={e => setColorTwo(e.target.value)} />
             </p>
             <p style={{ textAlign: 'center' }}>

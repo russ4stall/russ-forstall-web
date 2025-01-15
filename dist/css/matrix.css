@@ -1,0 +1,147 @@
+
+#column-1 {
+    width: 100%;
+}
+
+#grid {
+    width: 100%; 
+    float: right;
+}
+
+.axis-label {
+    grid-column: 1 / span 3; 
+    grid-row: 1 / span 1; 
+    text-align: center; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.quadrant {
+    position: relative;
+    background: transparent; 
+    aspect-ratio: 1 / 1;
+    border-radius: 15px;
+    border: solid 2px black;
+    /* border-top: 3px solid black;
+    border-left: 3px solid black; */
+    margin: 2px;
+    overflow: hidden;
+}
+
+.quadrant-label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 1.25rem;
+}
+
+.rotate-270 {
+    -moz-transform: rotate(270deg);  /* FF3.5+ */
+    -o-transform: rotate(270deg);  /* Opera 10.5 */
+    -webkit-transform: rotate(-90deg);
+}
+
+#bank {
+    width: 97%;
+    float: left;
+    background: transparent; 
+    border-radius: 15px;
+    border: solid 2px black;
+    /* border-top: 3px solid black;
+    border-left: 3px solid black; */
+    /* height: 400px; */
+
+    aspect-ratio: 1 / 1;
+    margin-top: 42px;
+    margin-bottom: 1rem;
+    padding: .5rem;
+    position: relative;
+}
+
+#trash-can {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background-image: url('/img/icons8-trash-100.png');
+}
+
+.item {
+    position: relative;
+    display: inline-block;
+    margin: .2rem;
+    background: salmon;
+    border-radius: 50px;
+    padding: 0 .5rem .2rem;
+    cursor: grab;
+    z-index: 100;
+}
+
+#matrix-drop-area {
+    z-index: 50;
+}
+
+.placed-item {
+    position: absolute;
+    margin: 0;
+}
+
+form {
+    display: inline-block;
+}
+
+input, select {
+    padding: .25rem .5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    
+    /* margin-right: .25rem; */
+}
+
+button {
+    background: transparent;
+    border: 1px solid black;
+    padding: .25rem .5rem;
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+}
+
+#actions, #help-text {
+    float: left;
+    width: 100%;
+}
+
+#actions button {
+    margin-bottom: .25rem;
+}
+
+.info-callout {
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+    aspect-ratio: 1/1;
+    text-align: center;
+
+}
+
+.text-danger {color: firebrick}
+
+/* utils */
+.w-100 {width:100%}
+.p-1 {padding:.25rem}
+.p-2 {padding:.5rem}
+.mb-1 {margin-bottom: .25rem}
+.mb-2 {margin-bottom: .5rem}
+
+@media (min-width: 800px) {
+    #grid { width: 64%; }
+    #column-1 { width: 33%; }
+  }

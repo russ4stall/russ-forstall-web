@@ -3,6 +3,7 @@ export enum HelpTextKey {
     ADD_ITEM,
     CLEAR,
     DEFAULT,
+    EXAMPLE_ITEMS,
     RESET,
     SAVE_SHARE,
     SETTINGS,
@@ -25,6 +26,10 @@ export function HelpText({helpTextKey}: HelpTextParams) {
                 case HelpTextKey.CLEAR:
                     return (
                         <p>Clear all items from the matrix AND the item bank. <span className="text-danger">DANGER:This cannot be undone!</span></p>
+                    )
+                case HelpTextKey.EXAMPLE_ITEMS:
+                    return (
+                        <p>Add some example items to the item bank.</p>
                     )
                 case HelpTextKey.RESET:
                     return (

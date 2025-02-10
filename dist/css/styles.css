@@ -38,9 +38,13 @@ nav {
 }
 
 nav a {
-    font-size: 1.25rem;
+    
+}
+
+nav a:first-of-type {
     font-family: initial;
     font-style: normal;
+    font-size: 1.25rem;
 }
 
 .container { 

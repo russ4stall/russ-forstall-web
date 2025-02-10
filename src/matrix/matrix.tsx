@@ -4,7 +4,7 @@ import { HelpText, HelpTextKey } from './help-text';
 import { MatrixSettings, SettingsForm, settingsTemplates } from './settings';
 import { spawn } from 'child_process';
 
-const gridItems = [
+const exampleGridItems = [
     new Item('coding'),
     new Item('ui design'),
     new Item('writing proposals'),
@@ -18,10 +18,10 @@ const gridItems = [
 
 export default function Matrix() {
     const TRASH_CAN_ID = 'trash-can';
-    const [items, setItems] = useState<Item[]>(gridItems);
+    const [items, setItems] = useState<Item[]>([]]);
     const [helpTextKey, setHelpTextKey] = useState<HelpTextKey | null>(null);
     const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
-    const [matrixSettings, setMatrixSettings] = useState<MatrixSettings>(settingsTemplates.geoghagen);
+    const [matrixSettings, setMatrixSettings] = useState<MatrixSettings>({...settingsTemplates.geoghagen, itemColor: 'salmon' });
     const [saveId, setSaveId] = useState<string | null>(null);
     const matrixDropAreaRef = useRef(null);
 
@@ -128,6 +128,10 @@ export default function Matrix() {
         setItems([]);
     }
 
+    const handleExampleItems = () => {
+        setItems(exampleGridItems);
+    }
+
     const setDefaultHelpText = () => {
         setHelpTextKey(HelpTextKey.DEFAULT)
     }
@@ -172,13 +176,15 @@ export default function Matrix() {
                 <div id='actions' className='p-2' style={{ gridRow: '1 / span 1' }}>
                     <button onClick={handleReset} onMouseEnter={() => setHelpTextKey(HelpTextKey.RESET)} onMouseLeave={setDefaultHelpText}>reset</button>&nbsp;
                     <button onClick={handleClear} onMouseEnter={() => setHelpTextKey(HelpTextKey.CLEAR)} onMouseLeave={setDefaultHelpText}>clear</button>&nbsp;
+                    {/* <button onClick={() => setIsSettingsOpen(true)} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText}>customize</button>&nbsp; */}
                     <button onClick={saveMatrixData} onMouseEnter={() => setHelpTextKey(HelpTextKey.SAVE_SHARE)} onMouseLeave={setDefaultHelpText}>save/share</button>
                 </div>
                 <div id='bank' style={{ gridRow: '2 / span 1' }} onDrop={handleBankDrop} onDragOver={e => e.preventDefault()} >
                     <div>
                         <form method='post' onSubmit={handleAddItems} onMouseEnter={() => setHelpTextKey(HelpTextKey.ADD_ITEM)} onMouseLeave={setDefaultHelpText}>
                             <input type="text" name='itemText' placeholder='add items' />&nbsp;
-                            <button type='submit'>add</button>
+                            <button type='submit'>add</button> 
+                            {items.length < 1 &&  <span> <button onClick={handleExampleItems} onMouseEnter={() => setHelpTextKey(HelpTextKey.EXAMPLE_ITEMS)} onMouseLeave={setDefaultHelpText}>examples</button></span>}
                         </form>
                     </div>
                     <div id='itemBank' style={{ marginTop: '.5rem' }} >
@@ -190,8 +196,7 @@ export default function Matrix() {
                     </div>
                 </div>
                 <div className='ml-2'>
-                    <button onClick={() => setIsSettingsOpen(!isSettingsOpen)} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText}>{isSettingsOpen ? 'hide settings' : 'show settings'}</button>&nbsp;
-                    
+                    <button onClick={() => setIsSettingsOpen(!isSettingsOpen)} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText}>{isSettingsOpen ? 'hide settings' : 'customize'}</button>&nbsp;
                 </div>
                 {isSettingsOpen && <SettingsForm settings={matrixSettings} setSettings={setMatrixSettings} onMouseEnter={() => setHelpTextKey(HelpTextKey.SETTINGS)} onMouseLeave={setDefaultHelpText} />}
                 

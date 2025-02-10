@@ -52,7 +52,7 @@ export function SettingsForm({ settings, setSettings, onMouseEnter, onMouseLeave
                     <td>Templates:</td>
                     <td>
                         <select name="template" onChange={handleTemplateSelection} >
-                            <option value="geoghagen">Geoghagen Matrix</option>
+                            <option value="geoghagen">Unique Ability Matrix</option>
                             <option value="eisenhower">Eisenhower Matrix</option>
                         </select>
                     </td>

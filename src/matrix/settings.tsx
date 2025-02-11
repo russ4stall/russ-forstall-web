@@ -13,7 +13,7 @@ export type MatrixSettings = {
 }
 
 export const settingsTemplates = {
-    geoghagen: {
+    geoghagan: {
         xAxisLabelLeft: 'Not Passionate',
         yAxisLabelBottom: 'Not Skilled',
         xAxisLabelRight: 'Passionate',
@@ -80,7 +80,7 @@ export function SettingsForm({ settings, setSettings, onMouseEnter, onMouseLeave
                     <td>
                         <select name="template" onChange={handleTemplateSelection} >
                             <option value="eisenhower">Eisenhower Matrix</option>
-                            <option value="geoghagen">Unique Abilities Matrix</option>
+                            <option value="geoghagan">Unique Abilities (Geoghagan Matrix)</option>
                             <option value="swot">SWOT Analysis</option>
                             <option value="johari">Johari Window</option>
                         </select>

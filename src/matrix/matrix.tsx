@@ -18,10 +18,10 @@ const exampleGridItems = [
 
 export default function Matrix() {
     const TRASH_CAN_ID = 'trash-can';
-    const [items, setItems] = useState<Item[]>([]]);
+    const [items, setItems] = useState<Item[]>([]);
     const [helpTextKey, setHelpTextKey] = useState<HelpTextKey | null>(null);
-    const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(false);
-    const [matrixSettings, setMatrixSettings] = useState<MatrixSettings>({...settingsTemplates.geoghagen, itemColor: 'salmon' });
+    const [isSettingsOpen, setIsSettingsOpen] = useState<boolean>(true);
+    const [matrixSettings, setMatrixSettings] = useState<MatrixSettings>(settingsTemplates.eisenhower);
     const [saveId, setSaveId] = useState<string | null>(null);
     const matrixDropAreaRef = useRef(null);
 
@@ -130,6 +130,7 @@ export default function Matrix() {
 
     const handleExampleItems = () => {
         setItems(exampleGridItems);
+        setHelpTextKey(HelpTextKey.DEFAULT)
     }
 
     const setDefaultHelpText = () => {
@@ -149,12 +150,18 @@ export default function Matrix() {
                     <a href={getShareLink()}>{getShareLink()}</a>
                 </div>
                 }
-            <div id='grid' style={{ position: 'relative', display: 'grid', gridTemplateColumns: '40px auto auto', gridTemplateRows: '40px auto auto' }} >
-                <div className='axis-label' style={{ gridColumn: '2 / span 2', gridRow: '1 / span 1' }}>
-                    {matrixSettings.xAxisLabel && <span> &#10230; {matrixSettings.xAxisLabel} &#10230;</span> }
+            <div id='grid' style={{ position: 'relative', display: 'grid', gridTemplateColumns: '40px 48% 48%', gridTemplateRows: '40px 48% 48%' }} >
+                <div className='axis-label' style={{ gridColumn: '2 / span 1', gridRow: '1 / span 1' }}>
+                    {matrixSettings.xAxisLabelLeft && <span>{matrixSettings.xAxisLabelLeft}</span>}
                 </div>
-                <div className='axis-label' style={{ gridColumn: '1 / span 1', gridRow: '2 / span 2' }}>
-                    {matrixSettings.yAxisLabel && <span className='rotate-270' style={{ whiteSpace: 'nowrap' }}>&#10230; {matrixSettings.yAxisLabel} &#10230;</span> }
+                <div className='axis-label' style={{ gridColumn: '3 / span 1', gridRow: '1 / span 1' }}>
+                    {matrixSettings.xAxisLabelRight && <span>{matrixSettings.xAxisLabelRight}</span>}
+                </div>
+                <div className='axis-label' style={{ gridColumn: '1 / span 1', gridRow: '2 / span 1' }}>
+                    {matrixSettings.yAxisLabelTop && <span className='rotate-270' style={{ whiteSpace: 'nowrap' }}>{matrixSettings.yAxisLabelTop}</span> }
+                </div>
+                <div className='axis-label' style={{ gridColumn: '1 / span 1', gridRow: '3 / span 1' }}>
+                    {matrixSettings.yAxisLabelBottom && <span className='rotate-270' style={{ whiteSpace: 'nowrap' }}>{matrixSettings.yAxisLabelBottom}</span> }
                 </div>
                 <div ref={matrixDropAreaRef} id='matrix-drop-area' style={{ position: 'relative', gridColumn: '2 / span 2', gridRow: '2 / span 2' }} onDrop={handleGridDrop} onDragOver={e => e.preventDefault()}>
                     {items.filter(item => item.isPlaced).map((item) => <DraggableItem key={item.id} color={matrixSettings.itemColor} item={item} handleDrag={handleItemDragStart} />)}

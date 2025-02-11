@@ -1,8 +1,10 @@
 import { ChangeEvent, ChangeEventHandler } from "react";
 
 export type MatrixSettings = {
-    xAxisLabel: string;
-    yAxisLabel: string;
+    xAxisLabelLeft: string;
+    xAxisLabelRight: string;
+    yAxisLabelBottom: string;
+    yAxisLabelTop: string;
     labelOne: string;
     labelTwo: string;
     labelThree: string;
@@ -12,20 +14,45 @@ export type MatrixSettings = {
 
 export const settingsTemplates = {
     geoghagen: {
-        xAxisLabel: 'Passion',
-        yAxisLabel: 'Skill',
+        xAxisLabelLeft: 'Not Passionate',
+        yAxisLabelBottom: 'Not Skilled',
+        xAxisLabelRight: 'Passionate',
+        yAxisLabelTop: 'Skilled',
         labelOne: 'Do',
         labelTwo: 'Teach',
         labelThree: 'Delegate',
         labelFour: 'Learn'
     } as MatrixSettings,
     eisenhower: {
-        xAxisLabel: 'Urgency',
-        yAxisLabel: 'Importance',
-        labelOne: 'Do now',
-        labelTwo: 'Schedule',
-        labelThree: 'Delete',
-        labelFour: 'Delegate'
+        xAxisLabelLeft: 'Urgent',
+        xAxisLabelRight: 'Not Urgent',
+        yAxisLabelTop: 'Important',
+        yAxisLabelBottom: 'Not Important',
+        labelOne: 'Schedule',
+        labelTwo: 'Do now',
+        labelThree: 'Delegate',
+        labelFour: 'Eliminate'
+    } as MatrixSettings,
+    swot: {
+        xAxisLabelLeft: 'Helpful',
+        xAxisLabelRight: 'Harmful',
+        yAxisLabelTop: 'Internal',
+        yAxisLabelBottom: 'External',
+        labelOne: 'Weaknesses',
+        labelTwo: 'Strengths',
+        labelThree: 'Opportunities',
+        labelFour: 'Threats'
+    } as MatrixSettings,
+    johari: {
+        xAxisLabelLeft: 'Known to self',
+        xAxisLabelRight: 'Not known to self',
+        yAxisLabelTop: 'Known to others',
+        yAxisLabelBottom: 'Not known to others',
+        labelOne: 'Blindspot',
+        labelTwo: 'Open',
+        labelThree: 'Hidden',
+        labelFour: 'Unknown',
+        itemColor: '#FA8072'
     } as MatrixSettings
 };
 
@@ -52,18 +79,28 @@ export function SettingsForm({ settings, setSettings, onMouseEnter, onMouseLeave
                     <td>Templates:</td>
                     <td>
                         <select name="template" onChange={handleTemplateSelection} >
-                            <option value="geoghagen">Unique Ability Matrix</option>
                             <option value="eisenhower">Eisenhower Matrix</option>
+                            <option value="geoghagen">Unique Abilities Matrix</option>
+                            <option value="swot">SWOT Analysis</option>
+                            <option value="johari">Johari Window</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>X Axis:</td>
-                    <td><input type="text" name='xAxisLabel' value={settings.xAxisLabel} onChange={(e) => setSettings({ ...settings, xAxisLabel: e.target.value }) }/></td>
+                    <td>X Axis Left:</td>
+                    <td><input type="text" name='xAxisLabelLeft' value={settings.xAxisLabelLeft} onChange={(e) => setSettings({ ...settings, xAxisLabelLeft: e.target.value }) }/></td>
                 </tr>
                 <tr>
-                    <td>Y Axis:</td>
-                    <td><input type="text" name='yAxisLabel' value={settings.yAxisLabel} onChange={(e) => setSettings({ ...settings, yAxisLabel: e.target.value }) }/></td>
+                    <td>X Axis Right:</td>
+                    <td><input type="text" name='xAxisLabelRight' value={settings.xAxisLabelRight} onChange={(e) => setSettings({ ...settings, xAxisLabelRight: e.target.value }) }/></td>
+                </tr>
+                <tr>
+                    <td>Y Axis Top:</td>
+                    <td><input type="text" name='yAxisLabelTop' value={settings.yAxisLabelTop} onChange={(e) => setSettings({ ...settings, yAxisLabelTop: e.target.value }) }/></td>
+                </tr>
+                <tr>
+                    <td>Y Axis Bottom:</td>
+                    <td><input type="text" name='yAxisLabelBottom' value={settings.yAxisLabelBottom} onChange={(e) => setSettings({ ...settings, yAxisLabelBottom: e.target.value }) }/></td>
                 </tr>
                 <tr>
                     <td>Quadrant One:</td>

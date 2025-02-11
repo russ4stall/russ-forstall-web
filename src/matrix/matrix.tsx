@@ -35,7 +35,7 @@ export default function Matrix() {
                     setItems(items);
                 };
             }
-            xhttp.open("GET", `/enter-the-eisenhower-matrix/saves/${saveId}`);
+            xhttp.open("GET", `/enter-the-analysis-matrix/saves/${saveId}`);
             xhttp.send();
         }
     }, []);
@@ -49,7 +49,7 @@ export default function Matrix() {
                     setSaveId(this.response)
             }
 
-            xhttp.open("POST", `/enter-the-eisenhower-matrix/saves/create`);
+            xhttp.open("POST", `/enter-the-analysis-matrix/saves/create`);
             xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xhttp.send(JSON.stringify(data));
     }
@@ -135,7 +135,7 @@ export default function Matrix() {
 
     const getShareLink = () => { 
         const url = new URL(window.location.href); 
-        return `${url.origin}/enter-the-eisenhower-matrix/app?save=${saveId}`;
+        return `${url.origin}/enter-the-analysis-matrix/app?save=${saveId}`;
     }
 
     return(

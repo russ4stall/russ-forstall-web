@@ -21,7 +21,7 @@ export function HelpText({helpTextKey}: HelpTextParams) {
             switch (helpTextKey) {
                 case HelpTextKey.ADD_ITEM:
                     return (
-                        <p>Add an item to the item bank. <span className="text-success">TIP:Paste a comma separated list for quick entry.</span></p>
+                        <p>Items over 35 characters will be trimmed. <span className="text-success">TIP:Paste a comma separated list for quick entry.</span></p>
                     )
                 case HelpTextKey.CLEAR:
                     return (

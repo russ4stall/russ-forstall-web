@@ -74,6 +74,7 @@
     padding: 0 .5rem .2rem;
     cursor: grab;
     z-index: 100;
+    font-size: .875rem;
 }
 
 #matrix-drop-area {
@@ -81,7 +82,7 @@
 }
 
 .placed-item {
-    position: absolute;
+    /* position: absolute; */
     margin: 0;
 }
 

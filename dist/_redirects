@@ -1,1 +1,4 @@
-/enter-the-eisenhower-matrix/app/:saveId /enter-the-eisenhower-matrix/app?save=:saveId
+/enter-the-eisenhower-matrix/app/:saveId /enter-the-analysis-matrix/app?save=:saveId
+/enter-the-eisenhower-matrix/app /enter-the-analysis-matrix/app
+/enter-the-eisenhower-matrix /enter-the-analysis-matrix
+/enter-the-analysis-matrix/app/:saveId /enter-the-analysis-matrix/app?save=:saveId

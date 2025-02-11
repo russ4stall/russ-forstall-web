@@ -1,4 +1,6 @@
 export async function onRequestPost(context) {
+    const secondsFromNow = 7776000; // 90 days
+
     const data = await context.request.json();
     console.log(data);
     const saveId = data.saveId;
@@ -8,7 +10,7 @@ export async function onRequestPost(context) {
       })
     }
 
-    await context.env.rfWeb.put(`matrix:${saveId}`, JSON.stringify(data));
+    await context.env.rfWeb.put(`matrix:${saveId}`, JSON.stringify(data), {expirationTtl: secondsFromNow});
 
     return new Response(saveId, { status: 200 });
 }

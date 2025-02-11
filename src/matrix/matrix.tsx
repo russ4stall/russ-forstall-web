@@ -57,8 +57,9 @@ export default function Matrix() {
     const handleAddItems = (e: any) => {
         e.preventDefault();
         const itemTextField = e.target.itemText;
+        const itemColorField = e.target.itemColor;
         if (!itemTextField.value) return;
-        const itemsToAdd: Item[] = itemTextField.value.split(',').map((itemText: string) => new Item(itemText));
+        const itemsToAdd: Item[] = itemTextField.value.split(',').map((itemText: string) => new Item(itemText, itemColorField.value));
         setItems([...items, ...itemsToAdd]);
         itemTextField.value = '';
     }
@@ -117,7 +118,7 @@ export default function Matrix() {
     }
 
     const handleReset = () => {
-        setItems(items.map(item => new Item(item.text)));
+        setItems(items.map(item => new Item(item.text, item.color)));
     }
     
     const handleClear = () => {
@@ -160,7 +161,7 @@ export default function Matrix() {
                     {matrixSettings.yAxisLabelBottom && <span className='rotate-270' style={{ whiteSpace: 'nowrap' }}>{matrixSettings.yAxisLabelBottom}</span> }
                 </div>
                 <div ref={matrixDropAreaRef} id='matrix-drop-area' style={{ position: 'relative', gridColumn: '2 / span 2', gridRow: '2 / span 2' }} onDrop={handleGridDrop} onDragOver={e => e.preventDefault()}>
-                    {items.filter(item => item.isPlaced).map((item) => <DraggableItem key={item.id} color={matrixSettings.itemColor} item={item} handleDrag={handleItemDragStart} />)}
+                    {items.filter(item => item.isPlaced).map((item) => <DraggableItem key={item.id} item={item} handleDrag={handleItemDragStart} />)}
                 </div>
                 <div className='quadrant' style={{ gridColumn: '3 / span 1', gridRow: '2 / span 1' }}>
                     <div className='quadrant-label'>{matrixSettings.labelOne}</div>
@@ -185,12 +186,13 @@ export default function Matrix() {
                     <div>
                         <form method='post' onSubmit={handleAddItems} onMouseEnter={() => setHelpTextKey(HelpTextKey.ADD_ITEM)} onMouseLeave={setDefaultHelpText}>
                             <input type="text" name='itemText' placeholder='add items' />&nbsp;
+                            <input type="color" name='itemColor' defaultValue='#fa8072' />&nbsp;
                             <button type='submit'>add</button> 
                             {/* {items.length < 1 &&  <span> <button onClick={handleExampleItems} onMouseEnter={() => setHelpTextKey(HelpTextKey.EXAMPLE_ITEMS)} onMouseLeave={setDefaultHelpText}>examples</button></span>} */}
                         </form>
                     </div>
                     <div id='itemBank' style={{ marginTop: '.5rem' }} >
-                        {items.filter(item => !item.isPlaced).map((item) => <DraggableItem key={item.id} color={matrixSettings.itemColor} item={item} handleDrag={handleItemDragStart} />)}
+                        {items.filter(item => !item.isPlaced).map((item) => <DraggableItem key={item.id} item={item} handleDrag={handleItemDragStart} />)}
                         <div id='help-text' className=''>
                             <HelpText helpTextKey={helpTextKey} />
                         </div>

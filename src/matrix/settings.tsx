@@ -9,7 +9,6 @@ export type MatrixSettings = {
     labelTwo: string;
     labelThree: string;
     labelFour: string;
-    itemColor: string;
 }
 
 export const settingsTemplates = {
@@ -52,7 +51,6 @@ export const settingsTemplates = {
         labelTwo: 'Open',
         labelThree: 'Hidden',
         labelFour: 'Unknown',
-        itemColor: '#FA8072'
     } as MatrixSettings
 };
 
@@ -117,10 +115,6 @@ export function SettingsForm({ settings, setSettings, onMouseEnter, onMouseLeave
                 <tr>
                     <td>Quadrant Four:</td>
                     <td><input type="text" name='labelOne' value={settings.labelFour} onChange={(e) => setSettings({ ...settings, labelFour: e.target.value }) }/></td>
-                </tr>
-                <tr>
-                    <td>Item Color:</td>
-                    <td><input type="color" name='itemColor' defaultValue='#FA8072' value={settings.itemColor} onChange={(e) => setSettings({ ...settings, itemColor: e.target.value }) }/></td>
                 </tr>
                 </tbody>
             </table>

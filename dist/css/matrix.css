@@ -36,6 +36,8 @@
     text-align: center;
     text-decoration: underline;
     font-size: 1.25rem;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .rotate-270 {
